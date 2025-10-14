@@ -2,8 +2,10 @@ import mongoose from "mongoose";
 
 const connectToDatabase = async () => {
     try {
-        await mongoose.connect("mongodb://localhost:27017/crud");
+        await mongoose.connect(process.env.MONGODB_URL);
+        console.log("Connected to MongoDB");
     } catch (error) {
         console.log("Database connection error:", error);
-    } 
-}
+    }
+};
+export default connectToDatabase;

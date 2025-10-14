@@ -1,10 +1,17 @@
-
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import Login from "./pages/login";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
-
-  return (
-    <div className="text-3xl text-teal-500">Welcome to EMS</div>
-  )
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Navigate to="admin-dashboard" />} />
+                <Route path="/login" element={<Login/>} />
+                <Route path="/admin-dashboard" element={<AdminDashboard/>} />
+            </Routes> 
+        </BrowserRouter>
+    );
 }
 
-export default App
+export default App;
