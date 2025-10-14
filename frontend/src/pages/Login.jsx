@@ -66,13 +66,16 @@ const login = () => {
                         </div>
 
                         <div className="w-full flex items-center justify-between mt-8 text-gray-500/80">
-                            <div className="flex items-center gap-2 cursor-pointer">
+                            <div className="flex items-center gap-2">
                                 <input
-                                    className="h-5"
+                                    className="cursor-pointer h-5"
                                     type="checkbox"
                                     id="checkbox"
                                 />
-                                <label className="text-sm" htmlFor="checkbox">
+                                <label
+                                    className="cursor-pointer text-sm"
+                                    htmlFor="checkbox"
+                                >
                                     Remember me
                                 </label>
                             </div>
