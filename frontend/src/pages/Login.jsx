@@ -66,9 +66,9 @@ const login = () => {
                         </div>
 
                         <div className="w-full flex items-center justify-between mt-8 text-gray-500/80">
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 cursor-pointer">
                                 <input
-                                    className="cursor-pointer h-5"
+                                    className="h-5"
                                     type="checkbox"
                                     id="checkbox"
                                 />
