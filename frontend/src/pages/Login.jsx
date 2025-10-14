@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../assets/ems-logo.png";
-import loginImage from "../assets/login-img1.png";
+import loginImage from "../assets/login-image3.png";
 import "./login.css";
 
 const login = () => {
@@ -18,10 +18,6 @@ const login = () => {
                 <div className="w-full h-screen flex items-center justify-center bg-white">
                     <form className="md:w-96 w-80 flex flex-col items-center justify-center">
                         <img className="w-64" src={logo} alt="logo" />
-
-                        {/* <h2 className="text-4xl text-gray-900 font-medium">
-                            Sign in
-                        </h2> */}
                         <p className="text-lg my-4 text-gray-500/90 mt-3">
                             Welcome back! Please sign in to continue
                         </p>
@@ -87,7 +83,7 @@ const login = () => {
 
                         <button
                             type="submit"
-                            className="mt-8 w-full h-11 rounded-full text-white bg-indigo-500 hover:opacity-90 transition-opacity"
+                            className="mt-8 w-full h-11 rounded-full text-white bg-lime-600 hover:opacity-90 transition-opacity"
                         >
                             Login
                         </button>
