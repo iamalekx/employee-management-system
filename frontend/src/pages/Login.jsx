@@ -38,7 +38,7 @@ const login = () => {
                             </svg>
                             <input
                                 type="email"
-                                placeholder="Email id"
+                                placeholder="Email"
                                 className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
                                 required
                             />
