@@ -68,7 +68,7 @@ const login = () => {
                         <div className="w-full flex items-center justify-between mt-8 text-gray-500/80">
                             <div className="flex items-center gap-2">
                                 <input
-                                    className="h-5"
+                                    className="cursor-pointer h-5"
                                     type="checkbox"
                                     id="checkbox"
                                 />
@@ -83,16 +83,10 @@ const login = () => {
 
                         <button
                             type="submit"
-                            className="mt-8 w-full h-11 rounded-full text-white bg-lime-600 hover:opacity-90 transition-opacity"
+                            className="cursor-pointer mt-8 w-full h-11 rounded-full text-white bg-lime-600 hover:opacity-90 transition-opacity"
                         >
                             Login
                         </button>
-                        {/* <p className="text-gray-500/90 text-sm mt-4">
-                        Don’t have an account?{" "}
-                        <a className="text-indigo-400 hover:underline" href="#">
-                            Sign up
-                        </a>
-                    </p> */}
                     </form>
                 </div>
             </div>
