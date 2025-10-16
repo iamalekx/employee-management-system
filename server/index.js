@@ -2,10 +2,14 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import "dotenv/config";
+import authRouter from "./routes/auth.js";
+import connectToDatabase from "./db/db.js";
 
+connectToDatabase();
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use("/api/auth", authRouter);
 
 // mongoose.connect("mongodb://localhost:27017/crud");
 
@@ -17,7 +21,7 @@ app.use(express.json());
 
 // const User = mongoose.model("users", userSchema);
 
-// app.get("/getUsers", async (req, res) => {
+// app.get("/getUsers", asyn c (req, res) => {
 //     try {
 //         const users = await User.find();
 //         res.json(users);

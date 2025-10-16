@@ -2,10 +2,45 @@ import React, { useState } from "react";
 import logo from "../assets/ems-logo.png";
 import loginImage from "../assets/login-image3.png";
 import "./login.css";
+import axios from "axios";
+import Alert from "../components/Alert";
 
 const login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState(null);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const url = "http://localhost:3000/api/auth/login";
+        try {
+            const response = await axios.post(url, { email, password });
+            if (response.data.success) {
+                console.log("Login successful", response.data);
+            }
+        } catch (error) {
+            // console.log(error);
+            // if (error.response) {
+            //     console.error(
+            //         `Login failed [${error.response.status} ${error.response.statusText}] at ${url}`,
+            //         error.response.data
+            //     );
+            // } else if (error.request) {
+            //     console.error(
+            //         `Login request made but no response from ${url}`,
+            //         error.request
+            //     );
+            // } else {
+            //     console.error("Login setup error:", error.message);
+            // }
+
+            if (error.response && error.response.data && error.response.data.message) {
+                setError(error.response.data.message);
+            } else {
+                setError("Server error. Please try again later.");
+            }
+        }
+    };
 
     return (
         <div className="login1">
@@ -19,11 +54,15 @@ const login = () => {
                 </div>
 
                 <div className="w-full h-screen flex items-center justify-center bg-white">
-                    <form className="md:w-96 w-80 flex flex-col items-center justify-center">
+                    <form
+                        onSubmit={handleSubmit}
+                        className="md:w-96 w-80 flex flex-col items-center justify-center"
+                    >
                         <img className="w-64" src={logo} alt="logo" />
                         <p className="text-lg my-4 text-gray-500/90 mt-3">
                             Welcome back! Please sign in to continue
                         </p>
+                        {error && <p className="text-red-500 flex justify-items-start">{error}</p>}
                         <div className="flex items-center w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6 gap-2">
                             <svg
                                 width="16"
@@ -88,7 +127,7 @@ const login = () => {
                                 Forgot password?
                             </a>
                         </div>
-
+                        {/* <Alert /> */}
                         <button
                             type="submit"
                             className="cursor-pointer mt-8 w-full h-11 rounded-full text-white bg-lime-600 hover:opacity-90 transition-opacity"
