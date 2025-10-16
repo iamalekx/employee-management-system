@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/ems-logo.png";
 import loginImage from "../assets/login-image3.png";
 import "./login.css";
 
 const login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
     return (
         <div className="login1">
             <div className=" flex h-full w-full bg-gray-100">
@@ -41,6 +44,7 @@ const login = () => {
                                 placeholder="Email"
                                 className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
                                 required
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
 
@@ -62,6 +66,7 @@ const login = () => {
                                 placeholder="Password"
                                 className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
                                 required
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
 
