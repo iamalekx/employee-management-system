@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useNavigate, useState } from "react";
 import logo from "../assets/ems-logo.png";
 import loginImage from "../assets/login-image3.png";
 import "./login.css";
 import axios from "axios";
 import Alert from "../components/Alert";
+import { useAuth } from "../context/authContext.jsx";
 
 const login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
+    const { login } = useAuth();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,10 +19,18 @@ const login = () => {
         try {
             const response = await axios.post(url, { email, password });
             if (response.data.success) {
-                console.log("Login successful", response.data);
+                // console.log("Login successful", response.data);
+                // alert("Login successful");
+                login(response.data.user);
+                localStorage.setItem("token", response.data.token);
+                if (response.data.user.role === "admin") {
+                    navigate("/admin-dashboard");
+                } else {
+                    navigate("/employee-dashboard");
+                }
             }
         } catch (error) {
-            // console.log(error);
+            console.log(error);
             // if (error.response) {
             //     console.error(
             //         `Login failed [${error.response.status} ${error.response.statusText}] at ${url}`,
@@ -34,7 +45,7 @@ const login = () => {
             //     console.error("Login setup error:", error.message);
             // }
 
-            if (error.response && error.response.data && error.response.data.message) {
+            if (!error.response.data.success) {
                 setError(error.response.data.message);
             } else {
                 setError("Server error. Please try again later.");
@@ -62,7 +73,11 @@ const login = () => {
                         <p className="text-lg my-4 text-gray-500/90 mt-3">
                             Welcome back! Please sign in to continue
                         </p>
-                        {error && <p className="text-red-500 flex justify-items-start">{error}</p>}
+                        {error && (
+                            <p className="text-red-500 flex justify-items-start">
+                                {error}
+                            </p>
+                        )}
                         <div className="flex items-center w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6 gap-2">
                             <svg
                                 width="16"
