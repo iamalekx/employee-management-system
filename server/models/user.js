@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { extname } from "path/win32";
 
 const userSchema = new mongoose.Schema({
     name: { type: String, required: true },

@@ -1,4 +1,5 @@
-import React, { useNavigate, useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../assets/ems-logo.png";
 import loginImage from "../assets/login-image3.png";
 import "./login.css";
@@ -6,7 +7,7 @@ import axios from "axios";
 import Alert from "../components/Alert";
 import { useAuth } from "../context/authContext.jsx";
 
-const login = () => {
+const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
@@ -18,9 +19,9 @@ const login = () => {
         const url = "http://localhost:3000/api/auth/login";
         try {
             const response = await axios.post(url, { email, password });
+            // console.log(response);
             if (response.data.success) {
-                // console.log("Login successful", response.data);
-                // alert("Login successful");
+                console.log("Login successful", response.data);
                 login(response.data.user);
                 localStorage.setItem("token", response.data.token);
                 if (response.data.user.role === "admin") {
@@ -30,23 +31,9 @@ const login = () => {
                 }
             }
         } catch (error) {
-            console.log(error);
-            // if (error.response) {
-            //     console.error(
-            //         `Login failed [${error.response.status} ${error.response.statusText}] at ${url}`,
-            //         error.response.data
-            //     );
-            // } else if (error.request) {
-            //     console.error(
-            //         `Login request made but no response from ${url}`,
-            //         error.request
-            //     );
-            // } else {
-            //     console.error("Login setup error:", error.message);
-            // }
-
-            if (!error.response.data.success) {
-                setError(error.response.data.message);
+            // console.log(error);
+            if (error.response && !error.response.data.success) {
+                setError(error.response.data.error);
             } else {
                 setError("Server error. Please try again later.");
             }
@@ -74,7 +61,7 @@ const login = () => {
                             Welcome back! Please sign in to continue
                         </p>
                         {error && (
-                            <p className="text-red-500 flex justify-items-start">
+                            <p className="text-red-500 mb-3">
                                 {error}
                             </p>
                         )}
@@ -156,4 +143,4 @@ const login = () => {
     );
 };
 
-export default login;
+export default Login;
