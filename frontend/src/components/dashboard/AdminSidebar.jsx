@@ -1,11 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/ems-logo.png";
+import { FaHome, FaList, FaTachometerAlt } from "react-icons/fa";
 
 const AdminSidebar = () => {
     return (
-        <div className="flex h-screen text-green-800 fixed left-0 top-0 bottom-0 flex-col w-65 bg-gray-200 space-y-8 pt-4">
-            <div className="bg-gray-200 h-15 flex items-center justify-center">
+        <div className="flex h-screen text-green-800 fixed left-0 top-0 bottom-0 flex-col w-65 bg-gray-50 space-y-8 pt-4 shadow-xl">
+            <div className="bg-transparent h-15 flex items-center justify-center">
                 <img className="w-18" src={logo} alt="logo" />
             </div>
             <div className="py-2 px-4 space-y-6">
@@ -13,9 +14,12 @@ const AdminSidebar = () => {
                     to="/admin-dashboard"
                     className={({ isActive }) =>
                         `${
-                            isActive ? "bg-wh-900" : " "
-                        } flex items-center gap-4`
+                            isActive
+                                ? "bg-teal-700 text-white w-50 rounded-xl px-2 py-1"
+                                : " "
+                        } flex items-center gap-4 text-green-900 hover:scale-120 hover:ml-5`
                     }
+                    end
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -32,13 +36,20 @@ const AdminSidebar = () => {
                         />
                     </svg>
 
-                    <span className="block rounded-lg px-4 py-2 text-md font-medium">
+                    <span className="block rounded-lg px-3 py-2 text-md font-medium">
                         Dashboard
                     </span>
                 </NavLink>
                 <NavLink
-                    to="/admin-dashboard"
-                    className="flex items-center gap-4"
+                    to="/admin-dashboard/employees"
+                    className={({ isActive }) =>
+                        `${
+                            isActive
+                                ? "bg-teal-700 text-white w-50 rounded-xl px-2 py-1"
+                                : " "
+                        } flex items-center gap-4 text-green-900 hover:scale-120 hover:ml-5`
+                    }
+                    end
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -55,13 +66,20 @@ const AdminSidebar = () => {
                         />
                     </svg>
 
-                    <span className="block rounded-lg px-4 py-2 text-md font-medium">
+                    <span className="block rounded-lg px-3 py-2 text-md font-medium">
                         Employees
                     </span>
                 </NavLink>
                 <NavLink
-                    to="/admin-dashboard"
-                    className="flex items-center gap-4"
+                    to="/admin-dashboard/departments"
+                    className={({ isActive }) =>
+                        `${
+                            isActive
+                                ? "bg-teal-700 text-white w-50 rounded-xl px-2 py-1"
+                                : " "
+                        } flex items-center gap-4 text-green-900 hover:scale-120 hover:ml-5`
+                    }
+                    end
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -78,13 +96,20 @@ const AdminSidebar = () => {
                         />
                     </svg>
 
-                    <span className="block rounded-lg px-4 py-2 text-md font-medium">
+                    <span className="block rounded-lg px-3 py-2 text-md font-medium">
                         Department
                     </span>
                 </NavLink>
                 <NavLink
-                    to="/admin-dashboard"
-                    className="flex items-center gap-4"
+                    to="/admin-dashboard/leaves"
+                    className={({ isActive }) =>
+                        `${
+                            isActive
+                                ? " bg-teal-700 text-white w-50 rounded-xl px-2 py-1"
+                                : " "
+                        } flex items-center gap-4 text-green-900 hover:scale-120 hover:ml-5`
+                    }
+                    end
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -106,8 +131,15 @@ const AdminSidebar = () => {
                     </span>
                 </NavLink>
                 <NavLink
-                    to="/admin-dashboard"
-                    className="flex items-center gap-4"
+                    to="/admin-dashboard/salary"
+                    className={({ isActive }) =>
+                        `${
+                            isActive
+                                ? "bg-teal-700 text-white w-50 rounded-xl px-2 py-1"
+                                : " "
+                        } flex items-center gap-4 text-green-900 hover:scale-120 hover:ml-5`
+                    }
+                    end
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -124,13 +156,20 @@ const AdminSidebar = () => {
                         />
                     </svg>
 
-                    <span className="block rounded-lg px-4 py-2 text-md font-medium">
+                    <span className="block rounded-lg px-3 py-2 text-md font-medium">
                         Salary
                     </span>
                 </NavLink>
                 <NavLink
-                    to="/admin-dashboard"
-                    className="flex items-center gap-4"
+                    to="/admin-dashboard/setting"
+                    className={({ isActive }) =>
+                        `${
+                            isActive
+                                ? " bg-teal-700 text-white w-50 rounded-xl px-2 py-1"
+                                : " "
+                        } flex items-center gap-4 text-green-900 hover:scale-120 hover:ml-5`
+                    }
+                    end
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -147,7 +186,7 @@ const AdminSidebar = () => {
                         />
                     </svg>
 
-                    <span className="block rounded-lg px-4 py-2 text-md font-medium">
+                    <span className="block rounded-lg px-3 py-2 text-md font-medium">
                         Setting
                     </span>
                 </NavLink>
