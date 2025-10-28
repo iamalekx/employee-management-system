@@ -15,6 +15,12 @@ const customStyles = {
 const DepartmentsList = () => {
     const [departments, setDepartments] = useState([]);
     const [depLoading, setDepLoading] = useState(false);
+    const [filteredDepartments, setFilteredDepartments] = useState([]);
+
+    const onDepartmentDelete = async (id) => {
+        const data = await departments.filter((dep) => dep._id !== id);
+        setDepartments(data);
+    };
 
     useEffect(() => {
         const fetchDepartments = async () => {
@@ -37,9 +43,15 @@ const DepartmentsList = () => {
                         _id: dep._id,
                         sno: sno++,
                         dep_name: dep.dep_name,
-                        action: <DepartmentButtons _id={dep._id}/>,
+                        action: (
+                            <DepartmentButtons
+                                _id={dep._id}
+                                onDepartmentDelete={onDepartmentDelete}
+                            />
+                        ),
                     }));
                     setDepartments(data);
+                    setFilteredDepartments(data);
                 }
             } catch (error) {
                 console.log(error);
@@ -53,6 +65,13 @@ const DepartmentsList = () => {
 
         fetchDepartments();
     }, []);
+
+    const filterDepartments = (e) => {
+        const records = departments.filter((dep) =>
+            dep.dep_name.toLowerCase().includes(e.target.value.toLowerCase())
+        );
+        setFilteredDepartments(records);
+    };
 
     return (
         <>
@@ -69,6 +88,7 @@ const DepartmentsList = () => {
                         <input
                             type="text"
                             placeholder="Search By Dep Name"
+                            onChange={filterDepartments}
                             className="px-5 py-1 bg-transparent border-1 border-teal-700 rounded-2xl"
                         />
                         <Link
@@ -79,7 +99,12 @@ const DepartmentsList = () => {
                         </Link>
                     </div>
                     <div className="rounded-2xl mt-6">
-                        <DataTable columns={columns} data={departments} customStyles={customStyles}/>
+                        <DataTable
+                            columns={columns}
+                            data={filteredDepartments}
+                            customStyles={customStyles}
+                            pagination
+                        />
                     </div>
                 </div>
             )}
