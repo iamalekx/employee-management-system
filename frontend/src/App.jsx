@@ -8,6 +8,8 @@ import AdminSummary from "./components/dashboard/AdminSummary";
 import DepartmentsList from "./components/departments/DepartmentsList";
 import AddDepartments from "./components/departments/AddDepartments";
 import EditDepartment from "./components/departments/EditDepartment";
+import EmployeeList from "./components/employee/EmployeeList";
+import AddEmployee from "./components/employee/AddEmployee";
 
 function App() {
     return (
@@ -26,9 +28,26 @@ function App() {
                     }
                 >
                     <Route index element={<AdminSummary />}></Route>
-                    <Route path="/admin-dashboard/departments" element={<DepartmentsList />}></Route>
-                    <Route path="/admin-dashboard/add-department" element={<AddDepartments />}></Route>
-                    <Route path="/admin-dashboard/department/:id" element={<EditDepartment />}></Route>
+                    <Route
+                        path="/admin-dashboard/departments"
+                        element={<DepartmentsList />}
+                    ></Route>
+                    <Route
+                        path="/admin-dashboard/add-department"
+                        element={<AddDepartments />}
+                    ></Route>
+                    <Route
+                        path="/admin-dashboard/department/:id"
+                        element={<EditDepartment />}
+                    ></Route>
+                    <Route
+                        path="/admin-dashboard/employees"
+                        element={<EmployeeList />}
+                    ></Route>
+                    <Route
+                        path="/admin-dashboard/add-employee"
+                        element={<AddEmployee />}
+                    ></Route>
                 </Route>
                 <Route
                     path="/employee-dashboard"
