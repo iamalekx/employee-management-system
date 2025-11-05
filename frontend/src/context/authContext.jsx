@@ -21,7 +21,7 @@ const authContext = ({ children }) => {
                             },
                         }
                     );
-                    console.log(response);
+                    // console.log(response);
                     if (response.data.success) {
                         setUser(response.data.user);
                     }
@@ -30,7 +30,7 @@ const authContext = ({ children }) => {
                     setLoading(false);
                 }
             } catch (error) {
-                console.log(error);
+                // console.log(error);
                 if (error.response && !error.response.data.error) {
                     setUser(null);
                 }

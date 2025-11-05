@@ -52,7 +52,7 @@ const AddEmployee = () => {
                 navigate("/admin-dashboard/employees");
             }
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             if (error.response && !error.response.data.success) {
                 alert(error.response.data.error);
             }

@@ -27,7 +27,7 @@ const EmployeeList = () => {
                         },
                     }
                 );
-                console.log(response);
+                // console.log(response);
                 if (response.data.success) {
                     let sno = 1;
                     const data = await response.data.employees.map((emp) => ({
@@ -44,12 +44,12 @@ const EmployeeList = () => {
                                 style={{ width: "50px", height: "50px", objectFit: "cover" }}
                             />
                         ),
-                        action: <EmployeeButtons Id={emp._id} />,
+                        action: <EmployeeButtons id={emp._id} />,
                     }));
                     setEmployees(data);
                 }
             } catch (error) {
-                console.log(error);
+                // console.log(error);
                 if (error.response && !error.response.data.success) {
                     alert(error.response.data.error);
                 }

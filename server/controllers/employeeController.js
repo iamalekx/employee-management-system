@@ -74,7 +74,9 @@ const addEmployee = async (req, res) => {
 const getEmployees = async (req, res) => {
     try {
         const { id } = req.params;
-        const employees = await Employee.find().populate('userId', {password: 0}).populate('department');
+        const employees = await Employee.find()
+            .populate("userId", { password: 0 })
+            .populate("department");
         return res.status(200).json({ success: true, employees });
     } catch (error) {
         // console.log(error);
@@ -85,4 +87,21 @@ const getEmployees = async (req, res) => {
     }
 };
 
-export { addEmployee, upload, getEmployees };
+const getEmployee = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const employee = await Employee.findById({ _id: id })
+            .populate("userId", { password: 0 })
+            .populate("department");
+        return res.status(200).json({ success: true, employee });
+    } catch (error) {
+        // console.log(error);
+        return res.status(500).json({
+            success: false,
+            error: "Getting employees server error",
+        });
+    }
+};
+
+export { addEmployee, upload, getEmployees, getEmployee };

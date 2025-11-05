@@ -6,37 +6,37 @@ export const columns_emp = [
         name: "S No",
         selector: (row) => row.sno,
         sortable: true,
-        maxWidth: "200px",
+        width: "200px",
     },
     {
         name: "Name",
         selector: (row) => row.name,
         sortable: true,
-        maxWidth: "200px",
+        width: "200px",
     },
     {
         name: "Image",
         selector: (row) => row.profileImage,
         sortable: true,
-        maxWidth: "200px",
+        width: "200px",
     },
     {
         name: "Department",
         selector: (row) => row.dep_name,
         sortable: true,
-        maxWidth: "200px",
+        width: "200px",
     },
     {
         name: "DOB",
         selector: (row) => row.dob,
         sortable: true,
-        maxWidth: "200px",
+        width: "200px",
     },
     {
         name: "Action",
         selector: (row) => row.action,
         center: "true",
-        maxWidth: "300px",
+        width: "300px",
     },
 ];
 
@@ -92,19 +92,19 @@ export const fetchDepartments = async () => {
     return departments;
 };
 
-export const EmployeeButtons = (Id) => {
+export const EmployeeButtons = ({id}) => {
     const navigate = useNavigate();
 
     return (
         <div className="flex space-x-2">
             <button
                 className="inline-flex items-center rounded-2xl bg-teal-100 px-3 py-1 text-xs font-medium text-teal-800 inset-ring inset-ring-teal-600/20 hover:bg-teal-200 hover:text-teal-900 focus:z-10 focus:outline-offset-0 cursor-pointer"
-                onClick={() => navigate(`/admin-dashboard/department/${_id}`)}
+                onClick={() => navigate(`/admin-dashboard/employees/${id}`)}
             >
                 View
             </button>
             <button className="inline-flex items-center rounded-2xl bg-blue-100 px-4 py-1 text-xs font-medium text--800 inset-ring inset-ring-yellow-600/20 hover:bg-blue-200 hover:text-blue-900 focus:z-10 focus:outline-offset-0 cursor-pointer"
-            onClick={()=> navigate(`/admin-dashboard/employees/${Id}`)}>
+            onClick={()=> navigate(`/admin-dashboard/employees/${id}`)}>
                 Edit
             </button>
             <button className="inline-flex items-center rounded-2xl bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800 inset-ring inset-ring-yellow-600/20 hover:bg-yellow-200 hover:text-yellow-900 focus:z-10 focus:outline-offset-0 cursor-pointer">
