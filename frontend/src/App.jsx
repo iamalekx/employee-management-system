@@ -48,6 +48,10 @@ function App() {
                         path="/admin-dashboard/add-employee"
                         element={<AddEmployee />}
                     ></Route>
+                    <Route
+                        path="/admin-dashboard/employees/:id"
+                        element={<AddEmployee />}
+                    ></Route>
                 </Route>
                 <Route
                     path="/employee-dashboard"

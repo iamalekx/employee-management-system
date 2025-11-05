@@ -6,7 +6,6 @@ import DataTable from "react-data-table-component";
 import { EmployeeButtons } from "../../utils/EmployeeHelper";
 import {
     columns_emp,
-    customStyles_emp,
     compactTableStyles,
 } from "../../utils/EmployeeHelper";
 
@@ -37,7 +36,14 @@ const EmployeeList = () => {
                         dep_name: emp.department?.dep_name,
                         name: emp.userId?.name,
                         dob: new Date(emp.dob).toDateString(),
-                        profileImage: <img src={`http://localhost:3000/${emp.userId.profileImage}`} />,
+                        profileImage: (
+                            <img
+                                className="rounded-full"
+                                src={`http://localhost:3000/${emp.userId.profileImage}`}
+                                alt={emp.userId?.name || "Employee"}
+                                style={{ width: "50px", height: "50px", objectFit: "cover" }}
+                            />
+                        ),
                         action: <EmployeeButtons Id={emp._id} />,
                     }));
                     setEmployees(data);
