@@ -104,7 +104,7 @@ export const EmployeeButtons = ({id}) => {
                 View
             </button>
             <button className="inline-flex items-center rounded-2xl bg-blue-100 px-4 py-1 text-xs font-medium text--800 inset-ring inset-ring-yellow-600/20 hover:bg-blue-200 hover:text-blue-900 focus:z-10 focus:outline-offset-0 cursor-pointer"
-            onClick={()=> navigate(`/admin-dashboard/employees/${id}`)}>
+            onClick={()=> navigate(`/admin-dashboard/employee/edit/${id}`)}>
                 Edit
             </button>
             <button className="inline-flex items-center rounded-2xl bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800 inset-ring inset-ring-yellow-600/20 hover:bg-yellow-200 hover:text-yellow-900 focus:z-10 focus:outline-offset-0 cursor-pointer">
