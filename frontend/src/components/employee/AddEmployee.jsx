@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { fetchDepartments } from "../../utils/EmployeeHelper";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { toFormData } from "axios";
+
 
 const AddEmployee = () => {
     const [departments, setDepartments] = useState([]);
     const [formData, setFormData] = useState({});
+    const navigate = useNavigate()
 
     useEffect(() => {
         const getDepartments = async () => {
@@ -35,7 +37,7 @@ const AddEmployee = () => {
         try {
             // const url = "http://localhost:3000"
             const response = await axios.post(
-                "http://localhost:3000/api/employee/add",
+                "http://localhost:3000/api/employees/add",
                 formDataObj,
                 {
                     headers: {
@@ -50,7 +52,7 @@ const AddEmployee = () => {
                 navigate("/admin-dashboard/employees");
             }
         } catch (error) {
-            // console.log(error)
+            console.log(error)
             if (error.response && !error.response.data.success) {
                 alert(error.response.data.error);
             }

@@ -15,6 +15,7 @@ export const columns = [
     {
         name: "Action",
         selector: (row) => row.action,
+        center: "true",
     },
 ];
 
@@ -59,13 +60,13 @@ export const DepartmentButtons = ({ _id, onDepartmentDelete }) => {
     return (
         <div className="flex space-x-2">
             <button
-                className="btn bg-teal-600 hover:bg-teal-700 rounded-full text-white"
+                className="inline-flex items-center rounded-2xl bg-teal-100 px-3 py-1 text-xs font-medium text-teal-800 inset-ring inset-ring-teal-600/20 hover:bg-teal-200 hover:text-teal-900 focus:z-10 focus:outline-offset-0 cursor-pointer"
                 onClick={() => navigate(`/admin-dashboard/department/${_id}`)}
             >
                 Edit
             </button>
             <button
-                className="btn bg-red-600 hover:bg-red-700 rounded-full text-white"
+                className="inline-flex items-center rounded-2xl bg-red-100 px-3 py-1 text-xs font-medium text-red-800 inset-ring inset-ring-yellow-600/20 hover:bg-red-200 hover:text-red-900 focus:z-10 focus:outline-offset-0 cursor-pointer"
                 onClick={() => handleDelete(_id)}
             >
                 Delete

@@ -1,7 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
+import DataTable from "react-data-table-component";
+import { EmployeeButtons } from "../../utils/EmployeeHelper";
+import {
+    columns_emp,
+    customStyles_emp,
+    compactTableStyles,
+} from "../../utils/EmployeeHelper";
 
 const EmployeeList = () => {
+    const [employees, setEmployees] = useState([]);
+    const [empLoading, setEmpLoading] = useState(false);
+
+    useEffect(() => {
+        const fetchEmployees = async () => {
+            setEmpLoading(true);
+            try {
+                const response = await axios.get(
+                    "http://localhost:3000/api/employees",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem(
+                                "token"
+                            )}`,
+                        },
+                    }
+                );
+                console.log(response);
+                if (response.data.success) {
+                    let sno = 1;
+                    const data = await response.data.employees.map((emp) => ({
+                        _id: emp._id,
+                        sno: sno++,
+                        dep_name: emp.department?.dep_name,
+                        name: emp.userId?.name,
+                        dob: new Date(emp.dob).toDateString(),
+                        profileImage: <img src={`http://localhost:3000/${emp.userId.profileImage}`} />,
+                        action: <EmployeeButtons Id={emp._id} />,
+                    }));
+                    setEmployees(data);
+                }
+            } catch (error) {
+                console.log(error);
+                if (error.response && !error.response.data.success) {
+                    alert(error.response.data.error);
+                }
+            } finally {
+                setEmpLoading(false);
+            }
+        };
+
+        fetchEmployees();
+    }, []);
+
     return (
         <div className="m-8">
             <div className="text-center">
@@ -20,6 +73,14 @@ const EmployeeList = () => {
                 >
                     Add New Employee
                 </Link>
+            </div>
+            <div className="mt-10">
+                <DataTable
+                    columns={columns_emp}
+                    data={employees}
+                    customStyles={(compactTableStyles)}
+                    pagination
+                />
             </div>
         </div>
     );

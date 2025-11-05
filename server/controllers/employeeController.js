@@ -29,7 +29,7 @@ const addEmployee = async (req, res) => {
             password,
             role,
         } = req.body;
-        console.log(req.body)
+        console.log(req.body);
 
         const user = await User.findOne({ email });
         if (user) {
@@ -64,11 +64,25 @@ const addEmployee = async (req, res) => {
             .status(200)
             .json({ success: true, message: "Employee created" });
     } catch (error) {
-        console.log(error.message)
+        console.log(error.message);
         return res
             .status(500)
             .json({ success: false, error: "Server error in adding employee" });
     }
 };
 
-export { addEmployee, upload };
+const getEmployees = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const employees = await Employee.find().populate('userId', {password: 0}).populate('department');
+        return res.status(200).json({ success: true, employees });
+    } catch (error) {
+        // console.log(error);
+        return res.status(500).json({
+            success: false,
+            error: "Getting employees server error",
+        });
+    }
+};
+
+export { addEmployee, upload, getEmployees };
