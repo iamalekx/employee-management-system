@@ -47,7 +47,7 @@ const View = () => {
                         <div>
                             <img
                                 className="rounded-full"
-                                style={{width:'300px', height:'295px'}}
+                                style={{ width: "300px", height: "295px" }}
                                 src={`http://localhost:3000/${employee.userId.profileImage}`}
                                 alt=""
                             />
@@ -99,7 +99,7 @@ const View = () => {
                     </div>
                 </div>
             ) : (
-                <span className="loading loading-spinner loading-xl"></span>
+                <span className="flex justify-self-center w-15  loading min-h-200 loading-spinner loading-xl"></span>
             )}
         </>
     );

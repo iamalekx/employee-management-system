@@ -74,7 +74,7 @@ const EditDepartment = () => {
     return (
         <>
             {depLoading ? (
-                <span className="loading loading-spinner loading-xl"></span>
+                <span className="flex justify-self-center w-15  loading min-h-200 loading-spinner loading-xl"></span>
             ) : (
                 <div className="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-xl shadow-xl w-150">
                     <div>

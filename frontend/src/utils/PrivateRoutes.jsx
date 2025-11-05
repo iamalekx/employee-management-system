@@ -6,7 +6,9 @@ const PrivateRoutes = ({children}) => {
     const {user, loading} = useAuth();
     
     if(loading) {
-        return <span className="loading loading-spinner loading-xl"></span>;
+        return (
+            <span className="flex justify-self-center w-15  loading min-h-200 loading-spinner loading-xl"></span>
+        );
     }
 
     return user ? children : <Navigate to="/login" />;

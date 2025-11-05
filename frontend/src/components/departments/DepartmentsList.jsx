@@ -76,7 +76,7 @@ const DepartmentsList = () => {
     return (
         <>
             {depLoading ? (
-                <span className="loading loading-spinner loading-xl"></span>
+                <span className="flex justify-self-center w-15  loading min-h-200 loading-spinner loading-xl"></span>
             ) : (
                 <div className="m-8">
                     <div className="text-center">

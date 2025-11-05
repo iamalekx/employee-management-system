@@ -4,14 +4,12 @@ import axios from "axios";
 import { useEffect } from "react";
 import DataTable from "react-data-table-component";
 import { EmployeeButtons } from "../../utils/EmployeeHelper";
-import {
-    columns_emp,
-    compactTableStyles,
-} from "../../utils/EmployeeHelper";
+import { columns_emp, compactTableStyles } from "../../utils/EmployeeHelper";
 
 const EmployeeList = () => {
     const [employees, setEmployees] = useState([]);
     const [empLoading, setEmpLoading] = useState(false);
+    const [filteredEmployees, setFilteredEmployees] = useState([]);
 
     useEffect(() => {
         const fetchEmployees = async () => {
@@ -41,12 +39,17 @@ const EmployeeList = () => {
                                 className="rounded-full"
                                 src={`http://localhost:3000/${emp.userId.profileImage}`}
                                 alt={emp.userId?.name || "Employee"}
-                                style={{ width: "50px", height: "50px", objectFit: "cover" }}
+                                style={{
+                                    width: "50px",
+                                    height: "50px",
+                                    objectFit: "cover",
+                                }}
                             />
                         ),
                         action: <EmployeeButtons id={emp._id} />,
                     }));
                     setEmployees(data);
+                    setFilteredEmployees(data);
                 }
             } catch (error) {
                 // console.log(error);
@@ -61,6 +64,13 @@ const EmployeeList = () => {
         fetchEmployees();
     }, []);
 
+    const handleFilter = (e) => {
+        const records = employees.filter((emp) =>
+            emp.name.toLowerCase().includes(e.target.value.toLowerCase())
+        );
+        setFilteredEmployees(records);
+    };
+
     return (
         <div className="m-8">
             <div className="text-center">
@@ -70,7 +80,7 @@ const EmployeeList = () => {
                 <input
                     type="text"
                     placeholder="Search By Employee Name"
-                    // onChange={filterDepartments}
+                    onChange={handleFilter}
                     className="px-5 py-1 w-60 bg-transparent border-1 border-teal-700 rounded-2xl"
                 />
                 <Link
@@ -83,8 +93,8 @@ const EmployeeList = () => {
             <div className="mt-10">
                 <DataTable
                     columns={columns_emp}
-                    data={employees}
-                    customStyles={(compactTableStyles)}
+                    data={filteredEmployees}
+                    customStyles={compactTableStyles}
                     pagination
                 />
             </div>

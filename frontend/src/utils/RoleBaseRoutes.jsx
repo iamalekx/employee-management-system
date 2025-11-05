@@ -6,7 +6,7 @@ const RoleBaseRoutes = ({ children, requiredRole }) => {
 
     if (loading) {
         return (
-            <span className="loading loading-spinner loading-xl flex justify-self-center"></span>
+            <span className="flex justify-self-center w-15  loading min-h-200 loading-spinner loading-xl"></span>
         );
     }
     if (!requiredRole.includes(user.role)) {
