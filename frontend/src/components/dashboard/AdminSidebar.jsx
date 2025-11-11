@@ -131,7 +131,7 @@ const AdminSidebar = () => {
                     </span>
                 </NavLink>
                 <NavLink
-                    to="/admin-dashboard/salary"
+                    to="/admin-dashboard/salary/add"
                     className={({ isActive }) =>
                         `${
                             isActive

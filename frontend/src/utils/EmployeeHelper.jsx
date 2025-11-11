@@ -92,6 +92,33 @@ export const fetchDepartments = async () => {
     return departments;
 };
 
+
+// employees for salary form 
+export const getEmployees = async (id) => {
+    let employees;
+    try {
+        const response = await axios.get(
+            `http://localhost:3000/api/employees/department/${id}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            }
+        );
+        // console.log(response);
+        if (response.data.success) {
+            console.log(response.data)
+            employees = response.data.employee;
+        }
+    } catch (error) {
+        console.log(error);
+        if (error.response && !error.response.data.success) {
+            // alert(error.response.data.error);
+        }
+    }
+    return employees;
+};
+
 export const EmployeeButtons = ({id}) => {
     const navigate = useNavigate();
 
@@ -107,7 +134,8 @@ export const EmployeeButtons = ({id}) => {
             onClick={()=> navigate(`/admin-dashboard/employee/edit/${id}`)}>
                 Edit
             </button>
-            <button className="inline-flex items-center rounded-2xl bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800 inset-ring inset-ring-yellow-600/20 hover:bg-yellow-200 hover:text-yellow-900 focus:z-10 focus:outline-offset-0 cursor-pointer">
+            <button className="inline-flex items-center rounded-2xl bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800 inset-ring inset-ring-yellow-600/20 hover:bg-yellow-200 hover:text-yellow-900 focus:z-10 focus:outline-offset-0 cursor-pointer"
+            onClick={() => navigate(`/admin-dashboard/employees/salary/${id}`)}>
                 Salary
             </button>
             <button className="inline-flex items-center rounded-2xl bg-red-100 px-3 py-1 text-xs font-medium text-red-800 inset-ring inset-ring-yellow-600/20 hover:bg-red-200 hover:text-red-900 focus:z-10 focus:outline-offset-0 cursor-pointer">
