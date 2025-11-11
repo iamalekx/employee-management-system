@@ -136,7 +136,6 @@
 
 // export default ViewSalary;
 
-// ...existing code...
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -277,4 +276,3 @@ const ViewSalary = () => {
 };
 
 export default ViewSalary;
-// ...existing code...
