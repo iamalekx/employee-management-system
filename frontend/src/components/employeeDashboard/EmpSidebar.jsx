@@ -2,8 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/ems-logo.png";
 import { FaHome, FaList, FaTachometerAlt } from "react-icons/fa";
+import { useAuth } from "../../context/authContext";
 
-const AdminSidebar = () => {
+const EmpSidebar = () => {
+    const { user } = useAuth();
     return (
         <div className="flex h-screen text-green-800 fixed left-0 top-0 bottom-0 flex-col w-65 bg-gray-50 space-y-8 pt-4 shadow-xl">
             <div className="bg-transparent h-15 flex items-center justify-center">
@@ -11,7 +13,7 @@ const AdminSidebar = () => {
             </div>
             <div className="py-2 px-4 space-y-6">
                 <NavLink
-                    to="/admin-dashboard"
+                    to="/employee-dashboard"
                     className={({ isActive }) =>
                         `${
                             isActive
@@ -35,13 +37,12 @@ const AdminSidebar = () => {
                             d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
                         />
                     </svg>
-
                     <span className="block rounded-lg px-3 py-2 text-md font-medium">
                         Dashboard
                     </span>
                 </NavLink>
                 <NavLink
-                    to="/admin-dashboard/employees"
+                    to={`/employee-dashboard/profile/${user._id}`}
                     className={({ isActive }) =>
                         `${
                             isActive
@@ -67,45 +68,15 @@ const AdminSidebar = () => {
                     </svg>
 
                     <span className="block rounded-lg px-3 py-2 text-md font-medium">
-                        Employees
+                        My Profile
                     </span>
                 </NavLink>
                 <NavLink
-                    to="/admin-dashboard/departments"
+                    to="/employee-dashboard/leaves"
                     className={({ isActive }) =>
                         `${
                             isActive
                                 ? "bg-teal-700 text-white w-50 rounded-xl px-2 py-1"
-                                : " "
-                        } flex items-center gap-4 text-green-900 hover:scale-120 hover:ml-5`
-                    }
-                    end
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="size-6"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"
-                        />
-                    </svg>
-
-                    <span className="block rounded-lg px-3 py-2 text-md font-medium">
-                        Department
-                    </span>
-                </NavLink>
-                <NavLink
-                    to="/admin-dashboard/leaves"
-                    className={({ isActive }) =>
-                        `${
-                            isActive
-                                ? " bg-teal-700 text-white w-50 rounded-xl px-2 py-1"
                                 : " "
                         } flex items-center gap-4 text-green-900 hover:scale-120 hover:ml-5`
                     }
@@ -126,16 +97,16 @@ const AdminSidebar = () => {
                         />
                     </svg>
 
-                    <span className="block rounded-lg px-4 py-2 text-md font-medium ">
-                        Leaves
+                    <span className="block rounded-lg px-3 py-2 text-md font-medium">
+                        Leave
                     </span>
                 </NavLink>
                 <NavLink
-                    to="/admin-dashboard/salary/add"
+                    to="/employee-dashboard/salary"
                     className={({ isActive }) =>
                         `${
                             isActive
-                                ? "bg-teal-700 text-white w-50 rounded-xl px-2 py-1"
+                                ? " bg-teal-700 text-white w-50 rounded-xl px-2 py-1"
                                 : " "
                         } flex items-center gap-4 text-green-900 hover:scale-120 hover:ml-5`
                     }
@@ -156,12 +127,13 @@ const AdminSidebar = () => {
                         />
                     </svg>
 
-                    <span className="block rounded-lg px-3 py-2 text-md font-medium">
+                    <span className="block rounded-lg px-4 py-2 text-md font-medium ">
                         Salary
                     </span>
                 </NavLink>
+
                 <NavLink
-                    to="/admin-dashboard/settings"
+                    to="/employee-dashboard/setting"
                     className={({ isActive }) =>
                         `${
                             isActive
@@ -191,7 +163,6 @@ const AdminSidebar = () => {
                     </span>
                 </NavLink>
             </div>
-
             <div className="fixed inset-x-0 bottom-0 border-t border-gray-100  text-gray-700">
                 <a
                     href="#"
@@ -205,7 +176,7 @@ const AdminSidebar = () => {
 
                     <div>
                         <p className="text-xs">
-                            <strong className="block font-medium">Admin</strong>
+                            <strong className="block font-medium">{user.name}</strong>
 
                             <span> admin@gmail.com </span>
                         </p>
@@ -216,4 +187,4 @@ const AdminSidebar = () => {
     );
 };
 
-export default AdminSidebar;
+export default EmpSidebar;

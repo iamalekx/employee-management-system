@@ -6,6 +6,7 @@ import departmentRouter from "./routes/department.js";
 import employeeRouter from "./routes/employee.js";
 import salaryRouter from "./routes/salary.js";
 import connectToDatabase from "./db/db.js";
+import leaveRouter from "./routes/leave.js";
 
 
 connectToDatabase();
@@ -17,6 +18,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/departments", departmentRouter);
 app.use("/api/employees", employeeRouter);
 app.use("/api/salary", salaryRouter);
+app.use("/api/leave", leaveRouter);
 
 
 app.listen(process.env.PORT, () => {
