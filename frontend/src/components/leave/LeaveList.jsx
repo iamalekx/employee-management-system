@@ -172,7 +172,7 @@ const LeaveList = () => {
                             {leaves.map((lv, idx) => (
                                 <tr
                                     key={lv._id ?? idx}
-                                    className="bg-white text-black border-b-0 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                                    className="bg-white text-gray-500 border-b-0 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                                 >
                                     <td className="px-6 py-3">{idx + 1}</td>
                                     <td className="px-6 py-3">

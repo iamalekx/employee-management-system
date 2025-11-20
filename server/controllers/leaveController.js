@@ -1,4 +1,3 @@
-import Employee from "../models/employee.js";
 import Leave from "../models/leave.js";
 const addLeave = async (req, res) => {
     try {
@@ -27,9 +26,7 @@ const addLeave = async (req, res) => {
 const getLeaves = async (req, res) => {
     try {
         const { userId } = req.params;
-
-
-        const leaves = await Leave.find({ userId});
+        const leaves = await Leave.find({ userId });
 
         return res.status(200).json({ success: true, leaves });
     } catch (error) {
@@ -39,4 +36,5 @@ const getLeaves = async (req, res) => {
             .json({ success: false, error: "Getting leave server error" });
     }
 };
+
 export { addLeave, getLeaves };

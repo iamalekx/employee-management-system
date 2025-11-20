@@ -1,4 +1,5 @@
 import Salary from "../models/salary.js";
+import Employee from "../models/employee.js";
 
 const addSalary = async (req, res) => {
     try {
@@ -31,18 +32,71 @@ const addSalary = async (req, res) => {
     }
 };
 
+// const getSalary = async (req, res) => {
+//     try {
+//         const { id } = req.params;
+//         let salary = await Salary.find({ employeeId: id }).populate(
+//             "employeeId",
+//             "employeeId"
+//         );
+//         if (!salary || salary.length < 0) {
+//             const employee = await Employee.findOne({ userId: id });
+//             salary = await Salary.find({ employeeId: employee._id }).populate(
+//                 "employeeId",
+//                 "employeeId"
+//             );
+//         }
+//         return res.status(200).json({ success: true, salary });
+//     } catch (error) {
+//         console.log(error);
+//         return res
+//             .status(500)
+//             .json({ success: false, error: "Getting salary server error" });
+//     }
+// };
+
 const getSalary = async (req, res) => {
     try {
+        // console.log("getSalary called, params:", req.params);
         const { id } = req.params;
-        const salary = await Salary.find
-            ({ employeeId: id }).populate("employeeId", "employeeId"
+        if (!id) {
+            console.warn("Missing id param");
+            return res
+                .status(400)
+                .json({ success: false, error: "Missing id param" });
+        }
+
+        // console.log("Mongoose readyState:", require("mongoose").connection.readyState);
+
+        let salaries = await Salary.find({ employeeId: id })
+            .populate("employeeId")
+            .lean();
+
+        if (!Array.isArray(salaries) || salaries.length === 0) {
+            const employee = await Employee.findOne({ userId: id }).select(
+                "_id"
+            );
+            if (employee && employee._id) {
+                salaries = await Salary.find({ employeeId: employee._id })
+                    .populate("employeeId")
+                    .lean();
+            }
+        }
+
+        console.log(
+            "salaries result length:",
+            Array.isArray(salaries) ? salaries.length : typeof salaries
         );
-        return res.status(200).json({ success: true, salary });
+
+        return res.status(200).json({
+            success: true,
+            salary: Array.isArray(salaries) ? salaries : [],
+        });
     } catch (error) {
-        console.log(error);
+        console.error("getSalary ERROR:", error);
         return res
             .status(500)
-            .json({ success: false, error: "Getting salary server error" });
+            .json({ success: false, error: error.message || "Server Error" });
     }
 };
 

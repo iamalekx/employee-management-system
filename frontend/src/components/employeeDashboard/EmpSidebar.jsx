@@ -102,7 +102,7 @@ const EmpSidebar = () => {
                     </span>
                 </NavLink>
                 <NavLink
-                    to="/employee-dashboard/salary"
+                    to={`/employee-dashboard/salary/${user._id}`}
                     className={({ isActive }) =>
                         `${
                             isActive
@@ -133,7 +133,7 @@ const EmpSidebar = () => {
                 </NavLink>
 
                 <NavLink
-                    to="/employee-dashboard/setting"
+                    to="/employee-dashboard/settings"
                     className={({ isActive }) =>
                         `${
                             isActive
@@ -176,9 +176,11 @@ const EmpSidebar = () => {
 
                     <div>
                         <p className="text-xs">
-                            <strong className="block font-medium">{user.name}</strong>
+                            <strong className="block font-medium">
+                                {user.name}
+                            </strong>
 
-                            <span> admin@gmail.com </span>
+                            <span> {user.email} </span>
                         </p>
                     </div>
                 </a>

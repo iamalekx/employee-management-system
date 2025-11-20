@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../../context/authContext.jsx";
 
 const ViewSalary = () => {
     const [salaries, setSalaries] = useState([]);
@@ -43,6 +44,7 @@ const ViewSalary = () => {
     };
 
     useEffect(() => {
+        console.log("ViewSalary useParams id:", id);
         fetchSalaries();
     }, [id]);
 

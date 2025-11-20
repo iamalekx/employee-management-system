@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/ems-logo.png";
 import { FaHome, FaList, FaTachometerAlt } from "react-icons/fa";
+import User from "../../../../server/models/User";
 
 const AdminSidebar = () => {
     return (
@@ -205,9 +206,9 @@ const AdminSidebar = () => {
 
                     <div>
                         <p className="text-xs">
-                            <strong className="block font-medium">Admin</strong>
+                            <strong className="block font-medium">{User.name}</strong>
 
-                            <span> admin@gmail.com </span>
+                            <span> {User.email} </span>
                         </p>
                     </div>
                 </a>
