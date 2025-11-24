@@ -3,8 +3,10 @@ import { NavLink } from "react-router-dom";
 import logo from "../../assets/ems-logo.png";
 import { FaHome, FaList, FaTachometerAlt } from "react-icons/fa";
 import User from "../../../../server/models/User";
+import { useAuth } from "../../context/authContext";
 
 const AdminSidebar = () => {
+    const { user } = useAuth();
     return (
         <div className="flex h-screen text-green-800 fixed left-0 top-0 bottom-0 flex-col w-65 bg-gray-50 space-y-8 pt-4 shadow-xl">
             <div className="bg-transparent h-15 flex items-center justify-center">
@@ -101,7 +103,7 @@ const AdminSidebar = () => {
                         Department
                     </span>
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                     to="/admin-dashboard/leaves"
                     className={({ isActive }) =>
                         `${
@@ -130,7 +132,7 @@ const AdminSidebar = () => {
                     <span className="block rounded-lg px-4 py-2 text-md font-medium ">
                         Leaves
                     </span>
-                </NavLink>
+                </NavLink> */}
                 <NavLink
                     to="/admin-dashboard/salary/add"
                     className={({ isActive }) =>
@@ -206,9 +208,11 @@ const AdminSidebar = () => {
 
                     <div>
                         <p className="text-xs">
-                            <strong className="block font-medium">{User.name}</strong>
+                            <strong className="block font-medium">
+                                {user.name}
+                            </strong>
 
-                            <span> {User.email} </span>
+                            <span> {user.email} </span>
                         </p>
                     </div>
                 </a>

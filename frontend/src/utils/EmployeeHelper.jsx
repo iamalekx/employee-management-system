@@ -138,9 +138,9 @@ export const EmployeeButtons = ({id}) => {
             onClick={() => navigate(`/admin-dashboard/employees/salary/${id}`)}>
                 Salary
             </button>
-            <button className="inline-flex items-center rounded-2xl bg-red-100 px-3 py-1 text-xs font-medium text-red-800 inset-ring inset-ring-yellow-600/20 hover:bg-red-200 hover:text-red-900 focus:z-10 focus:outline-offset-0 cursor-pointer">
+            {/* <button className="inline-flex items-center rounded-2xl bg-red-100 px-3 py-1 text-xs font-medium text-red-800 inset-ring inset-ring-yellow-600/20 hover:bg-red-200 hover:text-red-900 focus:z-10 focus:outline-offset-0 cursor-pointer">
                 Leave
-            </button>
+            </button> */}
         </div>
     );
 };

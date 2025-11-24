@@ -71,7 +71,7 @@ const EmpSidebar = () => {
                         My Profile
                     </span>
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                     to="/employee-dashboard/leaves"
                     className={({ isActive }) =>
                         `${
@@ -100,7 +100,7 @@ const EmpSidebar = () => {
                     <span className="block rounded-lg px-3 py-2 text-md font-medium">
                         Leave
                     </span>
-                </NavLink>
+                </NavLink> */}
                 <NavLink
                     to={`/employee-dashboard/salary/${user._id}`}
                     className={({ isActive }) =>

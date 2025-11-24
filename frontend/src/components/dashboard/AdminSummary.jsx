@@ -26,7 +26,7 @@ const AdminSummary = () => {
                     color={"bg-red-600"}
                 />
             </div>
-            <div className="flex flex-col mt-20">
+            {/* <div className="flex flex-col mt-20">
                 <h3 className="font-bold text-3xl my-2 text-center mb-10">
                     Leave Details
                 </h3>
@@ -56,7 +56,7 @@ const AdminSummary = () => {
                     color={"bg-red-600"}
                 />
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };
