@@ -1,8 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SummaryCard from "./SummaryCard";
-import { FaBuilding, FaCheck, FaFileAlt, FaHourglassHalf, FaMoneyBill, FaTimesCircle, FaUsers } from "react-icons/fa";
+import {
+    FaBuilding,
+    FaCheck,
+    FaFileAlt,
+    FaHourglassHalf,
+    FaMoneyBill,
+    FaTimesCircle,
+    FaUsers,
+} from "react-icons/fa";
+import axios from "axios";
 
 const AdminSummary = () => {
+    const [summary, setSummary] = useState(null);
+
+    useEffect(() => {
+        const fetchSummary = async () => {
+            try {
+                const response = await axios.get(
+                    `http://localhost:3000/api/dashboard/summary`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem(
+                                "token"
+                            )}`,
+                        },
+                    }
+                );
+                // store the response data (not the full axios response object)
+                setSummary(response.data);
+            } catch (error) {
+                console.log(error.message);
+                if (error.response) {
+                    alert(error.response.data.error);
+                }
+            }
+        };
+        fetchSummary();
+    }, []);
+
+    if (!summary) {
+        return (
+            <span className="flex justify-self-center w-15  loading min-h-200 loading-spinner loading-xl"></span>
+        );
+    }
+
     return (
         <div className="m-4">
             <h3 className="font-bold text-4xl my-12">Dashboard Overview</h3>
@@ -10,19 +52,23 @@ const AdminSummary = () => {
                 <SummaryCard
                     icon={<FaUsers />}
                     text="Total Employees"
-                    number={13}
+                    number={summary.totalEmployees}
                     color={"bg-teal-600"}
                 />
                 <SummaryCard
                     icon={<FaBuilding />}
                     text="Total Departments"
-                    number={5}
+                    number={summary.totalDepartments}
                     color={"bg-yellow-600"}
                 />
                 <SummaryCard
                     icon={<FaMoneyBill />}
                     text="Monthy Pay"
-                    number={"$10000"}
+                    number={new Intl.NumberFormat("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                        maximumFractionDigits: 0,
+                    }).format(summary.totalSalaries)}
                     color={"bg-red-600"}
                 />
             </div>
