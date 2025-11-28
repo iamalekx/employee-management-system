@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/ems-logo.png";
 import { FaHome, FaList, FaTachometerAlt } from "react-icons/fa";
-import User from "../../../../server/models/User";
 import { useAuth } from "../../context/authContext";
 
 const AdminSidebar = () => {
