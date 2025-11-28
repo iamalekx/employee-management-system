@@ -218,7 +218,7 @@ const AddEmployee = () => {
                     </div>
 
                     {/* Salary */}
-                    <div>
+                    {/* <div>
                         <label
                             htmlFor="salary"
                             className="block text-md font-medium text-gray-700"
@@ -233,7 +233,7 @@ const AddEmployee = () => {
                             className="mt-1 p-2 block w-full border border-gray-300 rounded-xl"
                             required
                         />
-                    </div>
+                    </div> */}
 
                     {/* Password */}
                     <div>
