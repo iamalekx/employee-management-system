@@ -77,6 +77,10 @@ function App() {
                         path="/admin-dashboard/leaves"
                         element={<LeaveTable />}
                     ></Route>
+                    <Route
+                        path="/admin-dashboard/settings"
+                        element={<Settings />}
+                    ></Route>
                 </Route>
                 <Route
                     path="/employee-dashboard"
