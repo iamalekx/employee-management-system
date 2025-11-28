@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/ems-logo.png";
 import loginImage from "../assets/login-image3.png";
-import "./login.css";
+import "./Login.css";
 import axios from "axios";
 import Alert from "../components/Alert";
 import { useAuth } from "../context/authContext.jsx";
