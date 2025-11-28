@@ -60,11 +60,7 @@ const Login = () => {
                         <p className="text-lg my-4 text-gray-500/90 mt-3">
                             Welcome back! Please sign in to continue
                         </p>
-                        {error && (
-                            <p className="text-red-500 mb-3">
-                                {error}
-                            </p>
-                        )}
+                        {error && <p className="text-red-500 mb-3">{error}</p>}
                         <div className="flex items-center w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-6 gap-2">
                             <svg
                                 width="16"
